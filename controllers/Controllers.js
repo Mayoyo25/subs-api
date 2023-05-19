@@ -15,26 +15,19 @@ const postData = async (req, res) => {
 }
 // update order
 const updateOrder = async (req, res) => {
-  // try {
-  //   // Find the document by id
-  //   const doc = await Data.findById(req.params.id)
-  //   // Extract the array from the document using the relevant property
-  //   const arrayToUpdate = doc.arrayToUpdate
-  //   // Reorder the items in the array based on the updated order
-  //   const updatedArray = req.body.updatedOrder
-  //   // Update the array in the document
-  //   doc.arrayToUpdate = updatedArray
-  //   // Save the updated document to MongoDB
-  //   await doc.save()
-  //   // Send a success response
-  //   res.status(200).json({ message: 'Array order updated successfully' })
-  // } catch (error) {
-  //   // Handle errors
-  //   res.status(500).json({ error: error.message })
-  // }
+  try {
+    const newData = req.body.subs
+    delete newData._id // remove _id field from update data
+    await Data.updateMany({}, { $set: newData }) // use $set operator to update fields
+    res.json({ message: 'All documents successfully replaced.' })
+  } catch (e) {
+    console.error(e)
+    res
+      .status(500)
+      .json({ error: 'An error occurred while updating subscriptions.' })
+  }
 }
 
-// Get all subscription data
 const getData = async (req, res) => {
   try {
     const subscriptions = await Data.find({})

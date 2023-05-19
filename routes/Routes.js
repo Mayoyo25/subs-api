@@ -9,7 +9,8 @@ const {
 } = require('../controllers/Controllers')
 const router = express.Router()
 
-router.route('/subscriptions').get(getData).post(postData).post(updateOrder)
+router.route('/subscriptions').get(getData).post(postData)
+router.route('/update').post(updateOrder)
 router
   .route('/subscriptions/:id')
   .get(getSingle)
