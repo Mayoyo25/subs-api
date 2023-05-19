@@ -5,10 +5,11 @@ const {
   getSingle,
   updateSingle,
   deleteSingle,
+  updateOrder,
 } = require('../controllers/Controllers')
 const router = express.Router()
 
-router.route('/subscriptions').get(getData).post(postData)
+router.route('/subscriptions').get(getData).post(postData).post(updateOrder)
 router
   .route('/subscriptions/:id')
   .get(getSingle)

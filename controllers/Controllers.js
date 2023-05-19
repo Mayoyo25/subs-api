@@ -2,8 +2,6 @@ const Data = require('../models/Schemas')
 
 // Create new subscription data
 const postData = async (req, res) => {
-  // console.log(req.body)
-  // res.send('done')
   try {
     const subscription = new Data(req.body)
     const savedSubscription = await subscription.save()
@@ -15,6 +13,27 @@ const postData = async (req, res) => {
       .json({ error: 'An error occurred while creating a subscription.' })
   }
 }
+// update order
+const updateOrder = async (req, res) => {
+  // try {
+  //   // Find the document by id
+  //   const doc = await Data.findById(req.params.id)
+  //   // Extract the array from the document using the relevant property
+  //   const arrayToUpdate = doc.arrayToUpdate
+  //   // Reorder the items in the array based on the updated order
+  //   const updatedArray = req.body.updatedOrder
+  //   // Update the array in the document
+  //   doc.arrayToUpdate = updatedArray
+  //   // Save the updated document to MongoDB
+  //   await doc.save()
+  //   // Send a success response
+  //   res.status(200).json({ message: 'Array order updated successfully' })
+  // } catch (error) {
+  //   // Handle errors
+  //   res.status(500).json({ error: error.message })
+  // }
+}
+
 // Get all subscription data
 const getData = async (req, res) => {
   try {
@@ -85,4 +104,5 @@ module.exports = {
   getSingle,
   updateSingle,
   deleteSingle,
+  updateOrder,
 }
